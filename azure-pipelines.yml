@@ -1,4 +1,5 @@
 # Xamarin.iOS and Xamarin.Android bindings
+name: 1.0.0.$(rev:.r)
 
 trigger:
 - main
@@ -33,7 +34,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.nuspec'
-    versioningScheme: 'off'
+    versioningScheme: 'byBuildNumber'
 
 - task: NuGetCommand@2
   inputs:
