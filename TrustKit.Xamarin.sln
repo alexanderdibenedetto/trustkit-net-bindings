@@ -1,0 +1,28 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrustKit.Xamarin.iOS", "TrustKit.Xamarin.iOS\TrustKit.Xamarin.iOS.csproj", "{01E609E1-2317-44DF-A535-66398442AD48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrustKit.Xamarin.Android", "TrustKit.Xamarin.Android\TrustKit.Xamarin.Android.csproj", "{70CF3C36-745D-4FBE-9C6D-29906A58DE3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01E609E1-2317-44DF-A535-66398442AD48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01E609E1-2317-44DF-A535-66398442AD48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01E609E1-2317-44DF-A535-66398442AD48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01E609E1-2317-44DF-A535-66398442AD48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70CF3C36-745D-4FBE-9C6D-29906A58DE3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70CF3C36-745D-4FBE-9C6D-29906A58DE3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70CF3C36-745D-4FBE-9C6D-29906A58DE3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70CF3C36-745D-4FBE-9C6D-29906A58DE3A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+	EndGlobalSection
+EndGlobal
