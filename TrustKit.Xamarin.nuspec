@@ -1,0 +1,35 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>TrustKit.Xamarin</id>
+    <version>$version$</version>
+    <authors>Alexander DiBenedetto</authors>
+    <owners>Alexander DiBenedetto</owners>
+    <tags>certificatepinning trustkit xamarin bindings</tags>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/alexanderdibenedetto/trustkit-xamarin-bindings</projectUrl>
+    <repository type="git" url="https://github.com/alexanderdibenedetto/trustkit-xamarin-bindings"/>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Xamarin binding libraries for DataTheorem's TrustKit Certificate Pinning implementations</description>
+    <dependencies>
+      <group targetFramework="MonoAndroid10.0">
+        <dependency id="Xamarin.AndroidX.Legacy.Support.V4" version="1.0.0" />
+        <dependency id="Xamarin.AndroidX.Preference" version="1.0.0.1" />
+      </group>
+      <group targetFramework="Xamarin.iOS10">
+      </group>
+    </dependencies>
+
+  </metadata>
+
+  <files>
+    <!--Android 10-->
+    <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.dll" target="lib\MonoAndroid10.0" />
+    <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.pdb" target="lib\MonoAndroid10.0" />
+
+    <!--iPhone Unified-->
+    <file src="TrustKit.Xamarin.iOS\bin\$Configuration$\TrustKit.Xamarin.iOS.dll" target="lib\Xamarin.iOS10" />
+    <file src="TrustKit.Xamarin.iOS\bin\$Configuration$\TrustKit.Xamarin.iOS.pdb" target="lib\Xamarin.iOS10" />
+</files>
+
+</package>
