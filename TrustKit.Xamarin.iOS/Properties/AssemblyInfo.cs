@@ -9,4 +9,4 @@ using Foundation;
 [assembly: AssemblyProduct("TrustKit.Xamarin.iOS")]
 [assembly: AssemblyCulture("en-US")]
 
-[assembly: AssemblyVersion("0.0.1")]
+[assembly: AssemblyVersion("1.0.0.0")]
