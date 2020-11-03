@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>TrustKit.Xamarin</id>
     <version>$version$</version>
@@ -16,21 +16,20 @@
         <dependency id="Xamarin.AndroidX.Legacy.Support.V4" version="1.0.0" />
         <dependency id="Xamarin.AndroidX.Preference" version="1.0.0.1" />
       </group>
-    </dependencies>
-
-    <references>
       <group targetFramework="Xamarin.iOS10">
       </group>
-      <group targetFramework="MonoAndroid10.0">
-      </group>
-    </references>
+    </dependencies>
+
   </metadata>
 
   <files>
     <!--Android 10-->
-    <file src="..\TrustKit.Xamarin.Android\bin\$Configuration$\MonoAndroid10.0\TrustKit.Xamarin.Android.dll" target="lib\MonoAndroid10.0" />
+    <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.dll" target="lib\MonoAndroid10.0" />
+    <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.pdb" target="lib\MonoAndroid10.0" />
+
     <!--iPhone Unified-->
-    <file src="..\TrustKit.Xamarin.iOS\bin\$Configuration$\TrustKit.Xamarin.iOS.dll" target="lib\Xamarin.iOS10" />
-  </files>
+    <file src="TrustKit.Xamarin.iOS\bin\$Configuration$\TrustKit.Xamarin.iOS.dll" target="lib\Xamarin.iOS10" />
+    <file src="TrustKit.Xamarin.iOS\bin\$Configuration$\TrustKit.Xamarin.iOS.pdb" target="lib\Xamarin.iOS10" />
+</files>
 
 </package>
