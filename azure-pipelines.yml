@@ -15,6 +15,9 @@ steps:
   displayName: 'Select the Xamarin SDK version'
   enabled: false
 
+- checkout: self
+  lfs: true
+
 - task: NuGetToolInstaller@1
 
 - task: MSBuild@1
