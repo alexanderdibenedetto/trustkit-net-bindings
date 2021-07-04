@@ -9,6 +9,32 @@ https://github.com/datatheorem/TrustKit
 [Android]
 https://github.com/datatheorem/TrustKit-Android
 
+# Usage
+The basic interface for this library is to override the HttpMessageHandler on a System.Net.Http.HttpClient constructor with a TrustKit enhanced version. Use any dependency service you want, the following example uses the built in Xamarin.Forms dependency service. This builds the platform specific http message handler for any http clients needed in the shared code library.
+
+```
+IHttpMessageHandlerFactory httpMessageHandlerFactory = DependencyService.Resolve<IHttpMessageHandlerFactory>();
+_httpClient = new HttpClient(httpMessageHandlerFactory.BuildHttpMessageHandler());
+```
+
+## iOS
+For iOS, configure by placing the TrustKit configuration in the info.plist as described by the original TrustKit library. It will not use swizzling in this implementation, even though it is in the info.plist. Only the HttpClients with the TrustKit HttpMessageHandler parameter will use the certificate pinning implementation.
+
+In the AppDelegate's FinishedLaunching method, be sure to put:
+```
+HttpMessageHandlerFactory.Init();
+```
+This initializes the TrustKit iOS code.
+
+## Android
+For Android, configure by placing the TrustKit configure in the normal Android security configuration file (resources/xml/network_security_config.xml) and be sure to follow the remaining documentation as described by the original TrustKit library.
+
+In the MainActivity's OnCreate function, be sure to put:
+```
+HttpMessageHandlerFactory.Init(this);
+```
+This initializes the TrustKit Android code.
+
 # About
 Certificate pinning is an important mobile security technique (https://owasp.org/www-community/controls/Certificate_and_Public_Key_Pinning). It allows application developers to ship a known certificate value, (or certificate public key value) with their application. Then, during TLS handshaking to establish a secure HTTPS connection with a remote server, this shipped known value is compared to the value presented by the server (which will be used for decrypting packets). If the value matches, the mobile application developer allows the connection to continue. If it doesn't, the developer can stop the connection and handle the failure however they deem appropriate (such as notifying the user).
 
