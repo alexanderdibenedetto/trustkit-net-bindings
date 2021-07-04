@@ -1,8 +1,32 @@
 # Xamarin.iOS and Xamarin.Android bindings
 name: 1.0.0$(rev:.r)
 
+variables:
+  PathToSrcCsproj: 'src/TrustKit.Xamarin.Core/TrustKit.Xamarin.Core.csproj'
+  PathToiOSSample: 'sample/Trustkit.Forms.iOS/TrustKit.Forms.iOS.csproj'
+  PathToAndroidSample: 'sample/Trustkit.Forms.Android/TrustKit.Forms.Android.csproj'
+
 trigger:
-- main
+  branches:
+    include:
+    - main
+    - develop
+  tags:
+    include:
+    - '*'
+  paths:
+    exclude:
+    - README.md
+
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - main
+    - develop
+  paths:
+    exclude:
+    - README.md
 
 pool:
   vmImage: 'macos-latest'
@@ -22,20 +46,18 @@ steps:
 - task: NuGetToolInstaller@1
 
 - task: MSBuild@1
+  displayName: Build TrustKit.Xamarin.Core
   inputs:
-    solution: '**/*.sln'
-    msbuildArchitecture: 'x64'
-    configuration: 'Release'
-    clean: true
-    maximumCpuCount: true
-    restoreNugetPackages: true
+    solution: $(PathToSrcCsproj)
+    configuration: Release
+    msbuildArguments: '/restore /t:Build'
 
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
     packagesToPack: '**/*.nuspec'
     versioningScheme: 'byBuildNumber'
-    configuration: $(BuildConfiguration)
+    configuration: Release
 
 - task: NuGetCommand@2
   inputs:
