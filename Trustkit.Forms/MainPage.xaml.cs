@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Serilog;
-using Trustkit.Forms.Interfaces;
+using TrustKit.Xamarin;
 using Xamarin.Forms;
 
 namespace Trustkit.Forms
@@ -17,7 +17,7 @@ namespace Trustkit.Forms
         {
             InitializeComponent();
             BindingContext = this;
-            GetContentCommand = new Command(async () => await GetContentCommandExecute());
+            GetContentCommand = new Command(async (x) => await GetContentCommandExecute((string)x));
             SetupHttpClient();
         }
 
@@ -28,17 +28,32 @@ namespace Trustkit.Forms
             _httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
         }
 
-        private async Task GetContentCommandExecute()
+        private async Task GetContentCommandExecute(string value)
         {
             try
             {
-                Text = await _httpClient.GetStringAsync("https://datatheorem.com");
-                //Text = await _httpClient.GetStringAsync("https://www.google.com");
+                switch (value)
+                {
+                    // ShouldAllowConnection
+                    case "0":
+                        Text = await _httpClient.GetStringAsync(@"https://datatheorem.com");
+                        break;
+
+                    // ShouldBlockConnection
+                    case "1":
+                        Text = await _httpClient.GetStringAsync(@"https://www.google.com");
+                        break;
+
+                    // DomainNotPinned
+                    case "2":
+                        Text = await _httpClient.GetStringAsync(@"https://www.microsoft.com");
+                        break;
+                }
             }
             catch (Exception ex)
             {
-                Log.Error(ex, ex.Message);
-                Text = ex.Message ?? string.Empty;
+                Log.Error("", ex.Message);
+                Text = $"Certificate Pinning Issue.{Environment.NewLine}{ex.Message ?? string.Empty}";
             }
         }
 

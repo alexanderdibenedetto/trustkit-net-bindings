@@ -4,7 +4,9 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
-using Com.Datatheorem.Android.Trustkit;
+using Xamarin.Forms;
+using TrustKit.Xamarin;
+using TrustKit.Xamarin.Android;
 
 namespace Trustkit.Forms.Droid
 {
@@ -18,8 +20,8 @@ namespace Trustkit.Forms.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            // initialize trustkit
-            TrustKit.InitializeWithNetworkSecurityConfiguration(this);
+            DependencyService.Register<IHttpMessageHandlerFactory, HttpMessageHandlerFactory>();
+            HttpMessageHandlerFactory.Init(this);
 
             LoadApplication(new App());
         }

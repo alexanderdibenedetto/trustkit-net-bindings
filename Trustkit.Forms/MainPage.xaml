@@ -3,14 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trustkit.Forms.MainPage"
              Title="TrustKit Xamarin Example"
+             NavigationPage.HasNavigationBar="True"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true">
-
     <StackLayout>
-        <Button Text="Get Content" Command="{Binding GetContentCommand}" TextColor="Black"/>
+        <Button Text="Test ShouldAllowConnection" Command="{Binding GetContentCommand}" CommandParameter="0" />
+        <Button Text="Test ShouldBlockConnection" Command="{Binding GetContentCommand}" CommandParameter="1" />
+        <Button Text="Test DomainNotPinned" Command="{Binding GetContentCommand}" CommandParameter="2" />
         <ScrollView>
-            <Label Text="{Binding Text}" VerticalOptions="FillAndExpand" LineBreakMode="WordWrap"/>
+            <Label Text="{Binding Text}" VerticalOptions="FillAndExpand" LineBreakMode="WordWrap" TextType="Html" />
         </ScrollView>
     </StackLayout>
-
 </ContentPage>

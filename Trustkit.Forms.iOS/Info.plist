@@ -63,6 +63,8 @@
 				</array>
 			</dict>
 		</dict>
+		<key>TSKSwizzleNetworkDelegates</key>
+		<false/>
 	</dict>
 </dict>
 </plist>

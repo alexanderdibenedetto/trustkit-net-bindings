@@ -1,20 +1,18 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using Java.Security;
+﻿using System.Net.Http;
 using Javax.Net.Ssl;
-using Trustkit.Forms.Interfaces;
 using Xamarin.Android.Net;
-using Xamarin.Forms;
-using Com.Datatheorem.Android.Trustkit;
+using Android.Content;
 
-[assembly: Dependency(typeof(Trustkit.Forms.Droid.HttpMessageHandlerFactory))]
-namespace Trustkit.Forms.Droid
+namespace TrustKit.Xamarin.Android
 {
     public class HttpMessageHandlerFactory : IHttpMessageHandlerFactory
     {
+        public static void Init(Context context)
+        {
+            Com.Datatheorem.Android.Trustkit.TrustKit.InitializeWithNetworkSecurityConfiguration(context);
+        }
+
+        /// <inheritdoc />
         public HttpMessageHandler BuildHttpMessageHandler()
         {
             return new TrustKitAndroidClientHandler();
@@ -24,7 +22,7 @@ namespace Trustkit.Forms.Droid
         {
             protected override SSLSocketFactory ConfigureCustomSSLSocketFactory(HttpsURLConnection connection)
             {
-                return TrustKit.Instance.GetSSLSocketFactory(connection.URL.Host);
+                return Com.Datatheorem.Android.Trustkit.TrustKit.Instance.GetSSLSocketFactory(connection.URL.Host);
             }
         }
     }

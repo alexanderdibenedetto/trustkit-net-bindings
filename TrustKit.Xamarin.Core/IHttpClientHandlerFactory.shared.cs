@@ -1,7 +1,6 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 
-namespace Trustkit.Forms.Interfaces
+namespace TrustKit.Xamarin
 {
     public interface IHttpMessageHandlerFactory
     {

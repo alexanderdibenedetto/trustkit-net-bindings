@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 using Foundation;
+using TrustKit.Xamarin;
+using TrustKit.Xamarin.iOS;
 using UIKit;
+using Xamarin.Forms;
 
 namespace Trustkit.Forms.iOS
 {
@@ -24,17 +25,8 @@ namespace Trustkit.Forms.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
-            NSDictionary trustKitConfig = (NSDictionary)NSBundle.MainBundle.ObjectForInfoDictionary("TSKConfiguration");
-
-            List<NSString> keys = new List<NSString>();
-            foreach(NSObject key in trustKitConfig.Keys)
-            {
-                keys.Add((NSString)key);
-            }
-
-            NSDictionary<NSString, NSObject> value = new NSDictionary<NSString, NSObject>(keys.ToArray(), trustKitConfig.Values);
-
-            TrustKit.Xamarin.iOS.TrustKit.InitSharedInstanceWithConfiguration(value);
+            DependencyService.Register<IHttpMessageHandlerFactory, HttpMessageHandlerFactory>();
+            HttpMessageHandlerFactory.Init();
 
             LoadApplication(new App());
 
