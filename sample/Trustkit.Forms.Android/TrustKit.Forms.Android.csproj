@@ -94,17 +94,17 @@
     <Folder Include="Resources\xml\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Trustkit.Forms\Trustkit.Forms.csproj">
-      <Project>{C0357CF6-CA38-4255-9FCB-0A6873B112AD}</Project>
+    <ProjectReference Include="..\Trustkit.Forms\TrustKit.Forms.csproj">
+      <Project>{9FFA51E8-167C-47F8-AF25-EFA0DEB0B3F9}</Project>
       <Name>TrustKit.Forms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TrustKit.Xamarin.Android\TrustKit.Xamarin.Android.csproj">
+    <ProjectReference Include="..\..\src\TrustKit.Xamarin.Core\TrustKit.Xamarin.Core.csproj">
+      <Project>{E7196F57-E431-459F-BAE9-DCC96D246986}</Project>
+      <Name>TrustKit.Xamarin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\TrustKit.Xamarin.Android\TrustKit.Xamarin.Android.csproj">
       <Project>{70CF3C36-745D-4FBE-9C6D-29906A58DE3A}</Project>
       <Name>TrustKit.Xamarin.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TrustKit.Xamarin.Core\TrustKit.Xamarin.Core.csproj">
-      <Project>{ABA61637-AF97-4552-9601-AB3E0D2467A3}</Project>
-      <Name>TrustKit.Xamarin.Core</Name>
     </ProjectReference>
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
