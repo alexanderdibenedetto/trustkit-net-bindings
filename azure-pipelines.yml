@@ -50,7 +50,7 @@ steps:
   inputs:
     solution: src/TrustKit.Xamarin.Core/TrustKit.Xamarin.Core.csproj
     configuration: Release
-    msbuildArguments: '/restore /build'
+    msbuildArguments: '/restore /t:Build'
 
 - task: MSBuild@1
   displayName: Build TrustKit.Forms.iOS Project.
@@ -58,21 +58,21 @@ steps:
     solution: sample/TrustKit.Forms.iOS/TrustKit.Forms.iOS.csproj
     configuration: Release
     platform: iPhone
-    msbuildArguments: '/restore /build'
+    msbuildArguments: '/restore /t:Build'
 
 - task: MSBuild@1
   displayName: Build TrustKit.Forms.Android Project.
   inputs:
     solution: sample/TrustKit.Forms.Android/TrustKit.Forms.Android.csproj
     configuration: Release
-    msbuildArguments: '/restore /build'
+    msbuildArguments: '/restore /t:Build'
 
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
     packagesToPack: '**/*.nuspec'
     versioningScheme: 'byBuildNumber'
-    configuration: $(BuildConfiguration)
+    configuration: Release
 
 - task: NuGetCommand@2
   inputs:
