@@ -7,8 +7,7 @@
             <pin digest="SHA-256">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</pin>
             <pin digest="SHA-256">YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=</pin>
         </pin-set>
-        <trustkit-config enforcePinning="true" disableDefaultReportUri="true">
-            <report-uri>https://overmind.datatheorem.com/trustkit/report</report-uri>
+        <trustkit-config enforcePinning="true" >
         </trustkit-config>
     </domain-config>
     <domain-config enforcePinning="true">
@@ -18,8 +17,7 @@
             <pin digest="SHA-256">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</pin>
             <pin digest="SHA-256">BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=</pin>
         </pin-set>
-        <trustkit-config enforcePinning="true" disableDefaultReportUri="true">
-            <report-uri>https://overmind.datatheorem.com/trustkit/report</report-uri>
+        <trustkit-config enforcePinning="true" >
         </trustkit-config>
     </domain-config>
 </network-security-config>

@@ -33,10 +33,12 @@ namespace Trustkit.Forms
             try
             {
                 Text = await _httpClient.GetStringAsync("https://datatheorem.com");
+                //Text = await _httpClient.GetStringAsync("https://www.google.com");
             }
             catch (Exception ex)
             {
                 Log.Error(ex, ex.Message);
+                Text = ex.Message ?? string.Empty;
             }
         }
 

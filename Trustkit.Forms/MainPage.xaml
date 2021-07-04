@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Trustkit.Forms.MainPage">
+             x:Class="Trustkit.Forms.MainPage"
+             Title="TrustKit Xamarin Example"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true">
 
     <StackLayout>
-        <Button Text="Get Content" Command="{Binding GetContentCommand}"/>
+        <Button Text="Get Content" Command="{Binding GetContentCommand}" TextColor="Black"/>
         <ScrollView>
             <Label Text="{Binding Text}" VerticalOptions="FillAndExpand" LineBreakMode="WordWrap"/>
         </ScrollView>

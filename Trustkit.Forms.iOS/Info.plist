@@ -38,24 +38,22 @@
 	<dict>
 		<key>TSKPinnedDomains</key>
 		<dict>
-			<key>yahoo.com</key>
+			<key>www.google.com</key>
 			<dict>
 				<key>TSKIncludeSubdomains</key>
 				<true/>
 				<key>TSKEnforcePinning</key>
-				<false/>
-				<key>TSKReportUris</key>
-				<array>
-					<string>https://www.test-report.com</string>
-				</array>
+				<true/>
 				<key>TSKPublicKeyHashes</key>
 				<array>
-					<string>TQEtdMbmwFgYUifM4LDF+xgEtd0z69mPGmkp014d6ZY=</string>
-					<string>rFjc3wG7lTZe43zeYTvPq8k4xdDEutCmIhI5dn4oCeE=</string>
+					<string>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</string>
+					<string>BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=</string>
 				</array>
 			</dict>
 			<key>www.datatheorem.com</key>
 			<dict>
+				<key>TSKIncludeSubdomains</key>
+				<true/>
 				<key>TSKEnforcePinning</key>
 				<true/>
 				<key>TSKPublicKeyHashes</key>
