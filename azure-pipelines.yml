@@ -52,11 +52,18 @@ steps:
     configuration: Release
     msbuildArguments: '/restore /t:Build'
 
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.nuspec'
+    versioningScheme: 'byBuildNumber'
+    configuration: Release
+
 - task: MSBuild@1
   displayName: Build TrustKit.Forms.iOS Project.
   inputs:
     solution: sample/TrustKit.Forms.iOS/TrustKit.Forms.iOS.csproj
-    configuration: Release
+    configuration: Debug
     platform: iPhone
     msbuildArguments: '/restore /t:Build'
 
@@ -64,15 +71,8 @@ steps:
   displayName: Build TrustKit.Forms.Android Project.
   inputs:
     solution: sample/TrustKit.Forms.Android/TrustKit.Forms.Android.csproj
-    configuration: Release
+    configuration: Debug
     msbuildArguments: '/restore /t:Build'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.nuspec'
-    versioningScheme: 'byBuildNumber'
-    configuration: Release
 
 - task: NuGetCommand@2
   inputs:
