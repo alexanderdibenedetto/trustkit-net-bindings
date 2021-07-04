@@ -45,7 +45,7 @@
 		<None Remove="obj\**" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard1.1')) ">
-		<PackageReference Include="System.Net.Http" Version="4.3.0" />
+		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
 		<PackageReference Update="NETStandard.Library" PrivateAssets="all" />
 		<Compile Include="**\*.netstandard.cs" />

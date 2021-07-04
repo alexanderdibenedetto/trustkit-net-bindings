@@ -12,6 +12,13 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Xamarin binding libraries for DataTheorem's TrustKit Certificate Pinning implementations</description>
     <dependencies>
+      <group targetFramework="NetStandard1.1">
+        <dependency id="System.Net.Http" version="4.3.4" />
+      </group>
+      <group targetFramework="NetStandard2.0">
+      </group>
+      <group targetFramework="NetStandard2.1">
+      </group>
       <group targetFramework="MonoAndroid10.0">
         <dependency id="Xamarin.AndroidX.Legacy.Support.V4" version="1.0.0" />
         <dependency id="Xamarin.AndroidX.Preference" version="1.0.0.1" />
@@ -23,6 +30,18 @@
   </metadata>
 
   <files>
+    <!--NetStandard 1.1-->
+    <file src="TrustKit.Xamarin.Core\bin\$Configuration$\TrustKit.Xamarin.Core.dll" target="lib\netstandard1.1" />
+    <file src="TrustKit.Xamarin.Core\bin\$Configuration$\TrustKit.Xamarin.Core.pdb" target="lib\netstandard1.1" />
+
+    <!--NetStandard 2.0-->
+    <file src="TrustKit.Xamarin.Core\bin\$Configuration$\TrustKit.Xamarin.Core.dll" target="lib\netstandard2.0" />
+    <file src="TrustKit.Xamarin.Core\bin\$Configuration$\TrustKit.Xamarin.Core.pdb" target="lib\netstandard2.0" />
+
+    <!--NetStandard 2.1-->
+    <file src="TrustKit.Xamarin.Core\bin\$Configuration$\TrustKit.Xamarin.Core.dll" target="lib\netstandard2.1" />
+    <file src="TrustKit.Xamarin.Core\bin\$Configuration$\TrustKit.Xamarin.Core.pdb" target="lib\netstandard2.1" />
+
     <!--Android 10-->
     <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.dll" target="lib\MonoAndroid10.0" />
     <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.pdb" target="lib\MonoAndroid10.0" />
