@@ -22,13 +22,40 @@ steps:
 - task: NuGetToolInstaller@1
 
 - task: MSBuild@1
+  displayName: Restore TrustKit.Xamarin.Core for Android and Netstandard
   inputs:
-    solution: '**/*.sln'
-    msbuildArchitecture: 'x64'
-    configuration: 'Release'
-    clean: true
-    maximumCpuCount: true
-    restoreNugetPackages: true
+    solution: src/TrustKit.Xamarin.Core/TrustKit.Xamarin.Core.csproj
+    configuration: Release
+    msbuildArguments: '/restore'
+- task: MSBuild@1
+  displayName: Restore TrustKit.Xamarin.Core for iPhone
+  inputs:
+    solution: src/TrustKit.Xamarin.Core/TrustKit.Xamarin.Core.csproj
+    configuration: Release
+    platform: iPhone
+    msbuildArguments: '/restore'
+
+- task: MSBuild@1
+  displayName: Build TrustKit.Xamarin.Core
+  inputs:
+    solution: src/TrustKit.Xamarin.Core/TrustKit.Xamarin.Core.csproj
+    configuration: Release
+    msbuildArguments: '/build'
+
+- task: MSBuild@1
+  displayName: Build TrustKit.Forms.iOS Project.
+  inputs:
+    solution: sample/TrustKit.Forms.iOS/TrustKit.Forms.iOS.csproj
+    configuration: Release
+    platform: iPhone
+    msbuildArguments: '/restore /build'
+
+- task: MSBuild@1
+  displayName: Build TrustKit.Forms.Android Project.
+  inputs:
+    solution: sample/TrustKit.Forms.Android/TrustKit.Forms.Android.csproj
+    configuration: Release
+    msbuildArguments: '/restore /build'
 
 - task: NuGetCommand@2
   inputs:
