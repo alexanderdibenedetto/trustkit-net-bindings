@@ -3,6 +3,8 @@ name: 1.0.0$(rev:.r)
 
 variables:
   PathToSrcCsproj: 'src/TrustKit.Xamarin.Core/TrustKit.Xamarin.Core.csproj'
+  PathToAndroidCsproj: 'src/TrustKit.Xamarin.Android/TrustKit.Xamarin.Android.csproj'
+  PathToiOSCsProj: 'src/TrustKit.Xamarin.iOS/TrustKit.Xamarin.iOS.csproj'
   PathToiOSSample: 'sample/Trustkit.Forms.iOS/TrustKit.Forms.iOS.csproj'
   PathToAndroidSample: 'sample/Trustkit.Forms.Android/TrustKit.Forms.Android.csproj'
 
@@ -51,6 +53,20 @@ steps:
     solution: $(PathToSrcCsproj)
     configuration: Release
     msbuildArguments: '/restore /t:Build'
+
+- task: MSBuild@2
+  displayName: Build TrustKit.Xamarin.Android
+  inputs:
+    solution: $(PathToAndroidCsproj)
+    configuration: Release
+    msbuildArguments: '/restore /t:Build'    
+
+- task: MSBuild@3
+  displayName: Build TrustKit.Xamarin.iOS
+  inputs:
+    solution: $(PathToiOSCsProj)
+    configuration: Release
+    msbuildArguments: '/restore /t:Build'    
 
 - task: NuGetCommand@2
   inputs:
