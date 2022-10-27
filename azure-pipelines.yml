@@ -54,14 +54,14 @@ steps:
     configuration: Release
     msbuildArguments: '/restore /t:Build'
 
-- task: MSBuild@2
+- task: MSBuild@1
   displayName: Build TrustKit.Xamarin.Android
   inputs:
     solution: $(PathToAndroidCsproj)
     configuration: Release
     msbuildArguments: '/restore /t:Build'    
 
-- task: MSBuild@3
+- task: MSBuild@1
   displayName: Build TrustKit.Xamarin.iOS
   inputs:
     solution: $(PathToiOSCsProj)
