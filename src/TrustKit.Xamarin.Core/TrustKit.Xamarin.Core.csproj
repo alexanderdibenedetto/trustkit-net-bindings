@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.1.2">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard1.1;netstandard2.0;netstandard2.1;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
 		<AssemblyName>TrustKit.Xamarin.Core</AssemblyName>
 		<RootNamespace>TrustKit.Xamarin</RootNamespace>
 		<PackageId>TrustKit.Xamarin</PackageId>
@@ -33,32 +33,8 @@
 		<!-- Manage TargetFrameworks for distribution (Release Mode) -->
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Include="**/*.shared.cs" />
-		<Compile Include="**/*.shared.*.cs" />
 		<Compile Include="IHttpClientHandlerFactory.cs">
 		  <SubType></SubType>
 		</Compile>
-	</ItemGroup>
-	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
-		<Compile Include="**/*.netstandard.cs" />
-		<Compile Include="**/*.netstandard*.cs" />
-		<Compile Remove="obj\**" />
-		<EmbeddedResource Remove="obj\**" />
-		<None Remove="obj\**" />
-	</ItemGroup>
-	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard1.1')) ">
-		<PackageReference Include="System.Net.Http" Version="4.3.4" />
-		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
-		<PackageReference Update="NETStandard.Library" PrivateAssets="all" />
-		<Compile Include="**\*.netstandard.cs" />
-		<Compile Include="**\*.netstandard.*.cs" />
-	</ItemGroup>
-	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard2.0')) ">
-		<Compile Include="**\*.netstandard.cs" />
-		<Compile Include="**\*.netstandard.*.cs" />
-	</ItemGroup>
-	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard2.1')) ">
-		<Compile Include="**\*.netstandard.cs" />
-		<Compile Include="**\*.netstandard.*.cs" />
 	</ItemGroup>
 </Project>
