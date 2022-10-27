@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.1.2">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard1.1;netstandard2.0;netstandard2.1;Xamarin.iOS10;MonoAndroid10.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard1.1;netstandard2.0;netstandard2.1;</TargetFrameworks>
 		<AssemblyName>TrustKit.Xamarin.Core</AssemblyName>
 		<RootNamespace>TrustKit.Xamarin</RootNamespace>
 		<PackageId>TrustKit.Xamarin</PackageId>
@@ -33,9 +33,11 @@
 		<!-- Manage TargetFrameworks for distribution (Release Mode) -->
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Include="*.shared.cs" />
 		<Compile Include="**/*.shared.cs" />
 		<Compile Include="**/*.shared.*.cs" />
+		<Compile Include="IHttpClientHandlerFactory.cs">
+		  <SubType></SubType>
+		</Compile>
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
 		<Compile Include="**/*.netstandard.cs" />
@@ -58,15 +60,5 @@
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard2.1')) ">
 		<Compile Include="**\*.netstandard.cs" />
 		<Compile Include="**\*.netstandard.*.cs" />
-	</ItemGroup>
-	<ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
-		<ProjectReference Include="..\TrustKit.Xamarin.Android\TrustKit.Xamarin.Android.csproj" />
-		<Compile Include="**\*.android.cs" />
-		<Compile Include="**\*.android.*.cs" />
-	</ItemGroup>
-	<ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
-		<ProjectReference Include="..\TrustKit.Xamarin.iOS\TrustKit.Xamarin.iOS.csproj" />
-		<Compile Include="**\*.ios.cs" />
-		<Compile Include="**\*.ios.*.cs" />
 	</ItemGroup>
 </Project>

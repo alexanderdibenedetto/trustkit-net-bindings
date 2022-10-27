@@ -5,7 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms;
-using TrustKit.Xamarin;
+using TrustKit.Xamarin.Core;
 using TrustKit.Xamarin.Android;
 
 namespace Trustkit.Forms.Droid

@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Serilog;
 using TrustKit.Xamarin;
+using TrustKit.Xamarin.Core;
 using Xamarin.Forms;
 
 namespace Trustkit.Forms

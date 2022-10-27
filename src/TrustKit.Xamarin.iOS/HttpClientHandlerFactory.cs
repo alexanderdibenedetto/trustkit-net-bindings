@@ -3,6 +3,7 @@ using System.Net.Http;
 using Security;
 using Foundation;
 using System.Collections.Generic;
+using TrustKit.Xamarin.Core;
 
 namespace TrustKit.Xamarin.iOS
 {
@@ -21,7 +22,6 @@ namespace TrustKit.Xamarin.iOS
             }
 
             NSDictionary<NSString, NSObject> value = new NSDictionary<NSString, NSObject>(keys.ToArray(), trustKitConfig.Values);
-
             TrustKit.InitSharedInstanceWithConfiguration(value);
         }
 
@@ -41,7 +41,7 @@ namespace TrustKit.Xamarin.iOS
             private bool TrustKitOverrideHandler(string url, SecTrust trust)
             {
                 Uri uri = new Uri(url);
-                TSKTrustDecision decision = TrustKit.SharedInstance().PinningValidator.EvaluateTrust(trust, uri.Host);
+                TSKTrustDecision decision = (TSKTrustDecision) TrustKit.SharedInstance().PinningValidator.EvaluateTrust(trust, uri.Host);
 
                 switch (decision)
                 {

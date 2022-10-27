@@ -23,6 +23,7 @@
     <None Remove="System.Text.Json" />
     <None Remove="PropertyChanged.Fody" />
     <None Remove="Serilog" />
+    <None Remove="TrustKit.Xamarin" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />

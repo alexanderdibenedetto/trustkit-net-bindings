@@ -2,6 +2,7 @@
 using Javax.Net.Ssl;
 using Xamarin.Android.Net;
 using Android.Content;
+using TrustKit.Xamarin.Core;
 
 namespace TrustKit.Xamarin.Android
 {
