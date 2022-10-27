@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace TrustKit.Xamarin
+namespace TrustKit.Xamarin.Core
 {
     public interface IHttpMessageHandlerFactory
     {

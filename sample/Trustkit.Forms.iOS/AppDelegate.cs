@@ -1,7 +1,7 @@
 ﻿using System;
 
 using Foundation;
-using TrustKit.Xamarin;
+using TrustKit.Xamarin.Core;
 using TrustKit.Xamarin.iOS;
 using UIKit;
 using Xamarin.Forms;
