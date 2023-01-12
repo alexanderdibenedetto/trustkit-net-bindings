@@ -7,9 +7,12 @@ using TrustKit.Xamarin.Core;
 
 namespace TrustKit.Xamarin.iOS
 {
+    [Preserve(AllMembers = true)]
     public class HttpMessageHandlerFactory : IHttpMessageHandlerFactory
     {
         private const string ConfigurationKey = "TSKConfiguration";
+
+        public HttpMessageHandlerFactory() { }
 
         public static void Init()
         {
@@ -31,7 +34,7 @@ namespace TrustKit.Xamarin.iOS
             return new TrustKitiOSClientHandler();
         }
 
-        protected class TrustKitiOSClientHandler : NSUrlSessionHandler
+        protected sealed class TrustKitiOSClientHandler : NSUrlSessionHandler
         {
             public TrustKitiOSClientHandler()
             {

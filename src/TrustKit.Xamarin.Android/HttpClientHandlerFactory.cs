@@ -3,11 +3,15 @@ using Javax.Net.Ssl;
 using Xamarin.Android.Net;
 using Android.Content;
 using TrustKit.Xamarin.Core;
+using Android.Runtime;
 
 namespace TrustKit.Xamarin.Android
 {
+    [Preserve(AllMembers = true)]
     public class HttpMessageHandlerFactory : IHttpMessageHandlerFactory
     {
+        public HttpMessageHandlerFactory() { }
+
         public static void Init(Context context)
         {
             Com.Datatheorem.Android.Trustkit.TrustKit.InitializeWithNetworkSecurityConfiguration(context);
@@ -19,7 +23,7 @@ namespace TrustKit.Xamarin.Android
             return new TrustKitAndroidClientHandler();
         }
 
-        protected class TrustKitAndroidClientHandler : AndroidClientHandler
+        protected sealed class TrustKitAndroidClientHandler : AndroidClientHandler
         {
             protected override SSLSocketFactory ConfigureCustomSSLSocketFactory(HttpsURLConnection connection)
             {
