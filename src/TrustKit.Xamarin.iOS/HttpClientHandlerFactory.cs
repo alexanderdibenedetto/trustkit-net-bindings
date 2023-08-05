@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using Security;
+﻿using System.Net.Http;
 using Foundation;
 using System.Collections.Generic;
 using TrustKit.Xamarin.Core;
@@ -10,60 +8,46 @@ namespace TrustKit.Xamarin.iOS
     [Preserve(AllMembers = true)]
     public class HttpMessageHandlerFactory : IHttpMessageHandlerFactory
     {
-        private const string ConfigurationKey = "TSKConfiguration";
+        public const string TSKConfigurationKey = "TSKConfiguration";
+        private bool _isInitialized;
 
         public HttpMessageHandlerFactory() { }
 
-        public static void Init()
+        /// <summary>
+        ///     Initialize the Shared Instance of TrustKit with the configuration.
+        /// </summary>
+        /// <param name="trustKitConfig">The TrustKit configuration. If null is passed, reads in keys from info.plist.</param>
+        public void InitSharedInstanceWithConfiguration([NullAllowed] NSDictionary<NSString, NSObject> trustKitConfig = default)
         {
-            NSDictionary trustKitConfig = (NSDictionary)NSBundle.MainBundle.ObjectForInfoDictionary(ConfigurationKey);
-
-            List<NSString> keys = new List<NSString>();
-            foreach (NSObject key in trustKitConfig.Keys)
+            if (_isInitialized)
             {
-                keys.Add((NSString)key);
+                return;
             }
 
-            NSDictionary<NSString, NSObject> value = new NSDictionary<NSString, NSObject>(keys.ToArray(), trustKitConfig.Values);
-            TrustKit.InitSharedInstanceWithConfiguration(value);
+            if (trustKitConfig == null)
+            {
+                // read them in from info.plist
+                NSDictionary trustKitDictionary = (NSDictionary)NSBundle.MainBundle.ObjectForInfoDictionary(TSKConfigurationKey);
+                List<NSString> keys = new();
+                foreach (NSObject key in trustKitDictionary.Keys)
+                {
+                    keys.Add((NSString)key);
+                }
+                NSDictionary<NSString, NSObject> value = new(keys.ToArray(), trustKitDictionary.Values);
+
+                TrustKit.InitSharedInstanceWithConfiguration(value);
+            }
+            else
+            {
+                TrustKit.InitSharedInstanceWithConfiguration(trustKitConfig);
+            }
+            _isInitialized = true;
         }
 
         /// <inheritdoc />
         public HttpMessageHandler BuildHttpMessageHandler()
         {
             return new TrustKitiOSClientHandler();
-        }
-
-        protected sealed class TrustKitiOSClientHandler : NSUrlSessionHandler
-        {
-            public TrustKitiOSClientHandler()
-            {
-                TrustOverrideForUrl += (NSUrlSessionHandler sender, string url, SecTrust trust) => TrustKitOverrideHandler(url, trust);
-            }
-
-            private bool TrustKitOverrideHandler(string url, SecTrust trust)
-            {
-                Uri uri = new Uri(url);
-                TSKTrustDecision decision = (TSKTrustDecision) TrustKit.SharedInstance().PinningValidator.EvaluateTrust(trust, uri.Host);
-
-                switch (decision)
-                {
-                    case TSKTrustDecision.ShouldAllowConnection:
-                        return true;
-                    case TSKTrustDecision.ShouldBlockConnection:
-                        return false;
-                    case TSKTrustDecision.DomainNotPinned:
-                        return true;
-                    default:
-                        return true;
-                }
-            }
-
-            protected override void Dispose(bool disposing)
-            {
-                TrustOverrideForUrl-= (NSUrlSessionHandler sender, string url, SecTrust trust) => TrustKitOverrideHandler(url, trust);
-                base.Dispose(disposing);
-            }
         }
     }
 }

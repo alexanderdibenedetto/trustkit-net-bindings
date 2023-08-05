@@ -21,7 +21,10 @@ namespace Trustkit.Forms.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             DependencyService.Register<IHttpMessageHandlerFactory, HttpMessageHandlerFactory>();
-            HttpMessageHandlerFactory.Init(this);
+            if(DependencyService.Resolve<IHttpMessageHandlerFactory>() is HttpMessageHandlerFactory httpMessageHandlerFactory)
+            {
+                httpMessageHandlerFactory.InitializeWithNetworkSecurityConfiguration(this);
+            }
 
             LoadApplication(new App());
         }
@@ -29,7 +32,6 @@ namespace Trustkit.Forms.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }

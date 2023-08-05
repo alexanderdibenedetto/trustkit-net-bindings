@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HttpClientHandlerFactory.cs" />
+    <Compile Include="TrustKitiOSClientHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <NativeReference Include="References\TrustKit.framework">
