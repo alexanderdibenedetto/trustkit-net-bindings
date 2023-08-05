@@ -32,6 +32,12 @@
 	<PropertyGroup Condition=" '$(Configuration)'=='Release' ">
 		<!-- Manage TargetFrameworks for distribution (Release Mode) -->
 	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	  <LangVersion>latestmajor</LangVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	  <LangVersion>latestmajor</LangVersion>
+	</PropertyGroup>
 	<ItemGroup>
 		<Compile Include="IHttpClientHandlerFactory.cs">
 		  <SubType></SubType>
