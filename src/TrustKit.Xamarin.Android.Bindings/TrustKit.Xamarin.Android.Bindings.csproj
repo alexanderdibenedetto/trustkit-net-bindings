@@ -10,7 +10,7 @@
     <TemplateGuid>{77efb91c-a7e9-4b0e-a7c5-31eeec3c6d46}</TemplateGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TrustKit.Xamarin.Android</RootNamespace>
+    <RootNamespace>TrustKit.Xamarin.Android.Bindings</RootNamespace>
     <AssemblyName>TrustKit.Xamarin.Android.Bindings</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <Deterministic>True</Deterministic>
