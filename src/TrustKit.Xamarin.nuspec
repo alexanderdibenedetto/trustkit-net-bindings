@@ -12,13 +12,15 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Xamarin binding libraries for DataTheorem's TrustKit Certificate Pinning implementations</description>
     <dependencies>
-      <group targetFramework="NetStandard2.0">
+      <group targetFramework="netstandard2.0">
       </group>
-      <group targetFramework="MonoAndroid10.0">
-        <dependency id="Xamarin.AndroidX.Legacy.Support.V4" version="1.0.0" />
-        <dependency id="Xamarin.AndroidX.Preference" version="1.0.0.1" />
+      <group targetFramework="MonoAndroid12.0">
+        <dependency id="Xamarin.AndroidX.Legacy.Support.V4" version="1.0.0.8" />
+        <dependency id="Xamarin.AndroidX.Preference" version="1.1.1.9" />
+        <dependency id="System.Net.Http" version="4.3.4" />
       </group>
       <group targetFramework="Xamarin.iOS10">
+       <dependency id="System.Net.Http" version="4.3.4" />
       </group>
     </dependencies>
 
@@ -29,15 +31,19 @@
     <file src="TrustKit.Xamarin.Core\bin\$Configuration$\netstandard2.0\TrustKit.Xamarin.Core.dll" target="lib\netstandard2.0" />
     <file src="TrustKit.Xamarin.Core\bin\$Configuration$\netstandard2.0\TrustKit.Xamarin.Core.pdb" target="lib\netstandard2.0" />
 
-    <!--Android 10-->
-    <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.dll" target="lib\MonoAndroid10.0" />
-    <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.pdb" target="lib\MonoAndroid10.0" />
-    <file src="TrustKit.Xamarin.Core\bin\$Configuration$\netstandard2.0\TrustKit.Xamarin.Core.dll" target="lib\MonoAndroid10.0" />
-    <file src="TrustKit.Xamarin.Core\bin\$Configuration$\netstandard2.0\TrustKit.Xamarin.Core.pdb" target="lib\MonoAndroid10.0" />
+    <!--Android 12-->
+    <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.dll" target="lib\MonoAndroid12.0" />
+    <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.pdb" target="lib\MonoAndroid12.0" />
+    <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.Bindings.dll" target="lib\MonoAndroid12.0" />
+    <file src="TrustKit.Xamarin.Android\bin\$Configuration$\TrustKit.Xamarin.Android.Bindings.pdb" target="lib\MonoAndroid12.0" />
+    <file src="TrustKit.Xamarin.Core\bin\$Configuration$\netstandard2.0\TrustKit.Xamarin.Core.dll" target="lib\MonoAndroid12.0" />
+    <file src="TrustKit.Xamarin.Core\bin\$Configuration$\netstandard2.0\TrustKit.Xamarin.Core.pdb" target="lib\MonoAndroid12.0" />
 
     <!--iPhone Unified-->
     <file src="TrustKit.Xamarin.iOS\bin\$Configuration$\TrustKit.Xamarin.iOS.dll" target="lib\Xamarin.iOS10" />
     <file src="TrustKit.Xamarin.iOS\bin\$Configuration$\TrustKit.Xamarin.iOS.pdb" target="lib\Xamarin.iOS10" />
+    <file src="TrustKit.Xamarin.iOS\bin\$Configuration$\TrustKit.Xamarin.iOS.Bindings.dll" target="lib\Xamarin.iOS10" />
+    <file src="TrustKit.Xamarin.iOS\bin\$Configuration$\TrustKit.Xamarin.iOS.Bindings.pdb" target="lib\Xamarin.iOS10" />
     <file src="TrustKit.Xamarin.Core\bin\$Configuration$\netstandard2.0\TrustKit.Xamarin.Core.dll" target="lib\Xamarin.iOS10" />
     <file src="TrustKit.Xamarin.Core\bin\$Configuration$\netstandard2.0\TrustKit.Xamarin.Core.pdb" target="lib\Xamarin.iOS10" />
 </files>
