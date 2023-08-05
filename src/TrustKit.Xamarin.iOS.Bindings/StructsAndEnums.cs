@@ -1,4 +1,4 @@
-using ObjCRuntime;
+﻿using ObjCRuntime;
 
 namespace TrustKit.Xamarin.iOS
 {
