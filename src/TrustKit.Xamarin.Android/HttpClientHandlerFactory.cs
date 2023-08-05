@@ -26,11 +26,13 @@ namespace TrustKit.Xamarin.Android
         /// <param name="context"></param>
         public void InitializeWithNetworkSecurityConfiguration(Context context)
         {
-            if (!_initialized)
+            if (_initialized)
             {
-                Com.Datatheorem.Android.Trustkit.TrustKit.InitializeWithNetworkSecurityConfiguration(context);
-                _initialized = true;
+                return;
             }
+
+            Com.Datatheorem.Android.Trustkit.TrustKit.InitializeWithNetworkSecurityConfiguration(context);
+            _initialized = true;
         }
 
         /// <inheritdoc />
