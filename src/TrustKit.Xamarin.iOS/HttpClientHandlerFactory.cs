@@ -1,31 +1,49 @@
-﻿using System;
-using System.Net.Http;
-using Security;
+﻿using System.Net.Http;
 using Foundation;
 using System.Collections.Generic;
 using TrustKit.Xamarin.Core;
+using System;
 
 namespace TrustKit.Xamarin.iOS
 {
     [Preserve(AllMembers = true)]
-    public class HttpMessageHandlerFactory : IHttpMessageHandlerFactory
+    public class HttpMessageHandlerFactory : IHttpMessageHandlerFactory, IDisposable
     {
-        private const string ConfigurationKey = "TSKConfiguration";
+        public const string TSKConfigurationKey = "TSKConfiguration";
+        private bool _isInitialized;
+        private bool _disposedValue;
 
         public HttpMessageHandlerFactory() { }
 
-        public static void Init()
+        /// <summary>
+        ///     Initialize the Shared Instance of TrustKit with the given configuration [NullAllowed].
+        /// </summary>
+        /// <param name="trustKitConfig">The TrustKit configuration. If null is passed, reads in keys from info.plist.</param>
+        public void InitSharedInstanceWithConfiguration(NSDictionary<NSString, NSObject> trustKitConfig = default)
         {
-            NSDictionary trustKitConfig = (NSDictionary)NSBundle.MainBundle.ObjectForInfoDictionary(ConfigurationKey);
-
-            List<NSString> keys = new List<NSString>();
-            foreach (NSObject key in trustKitConfig.Keys)
+            if (_isInitialized)
             {
-                keys.Add((NSString)key);
+                return;
             }
 
-            NSDictionary<NSString, NSObject> value = new NSDictionary<NSString, NSObject>(keys.ToArray(), trustKitConfig.Values);
-            TrustKit.InitSharedInstanceWithConfiguration(value);
+            if (trustKitConfig == null)
+            {
+                // read them in from info.plist
+                NSDictionary trustKitDictionary = (NSDictionary)NSBundle.MainBundle.ObjectForInfoDictionary(TSKConfigurationKey);
+                List<NSString> keys = new();
+                foreach (NSObject key in trustKitDictionary.Keys)
+                {
+                    keys.Add((NSString)key);
+                }
+                NSDictionary<NSString, NSObject> value = new(keys.ToArray(), trustKitDictionary.Values);
+
+                TrustKit.InitSharedInstanceWithConfiguration(value);
+            }
+            else
+            {
+                TrustKit.InitSharedInstanceWithConfiguration(trustKitConfig);
+            }
+            _isInitialized = true;
         }
 
         /// <inheritdoc />
@@ -34,36 +52,24 @@ namespace TrustKit.Xamarin.iOS
             return new TrustKitiOSClientHandler();
         }
 
-        protected sealed class TrustKitiOSClientHandler : NSUrlSessionHandler
+        /// <inheritdoc />
+        protected virtual void Dispose(bool disposing)
         {
-            public TrustKitiOSClientHandler()
+            if (!_disposedValue)
             {
-                TrustOverrideForUrl += (NSUrlSessionHandler sender, string url, SecTrust trust) => TrustKitOverrideHandler(url, trust);
-            }
-
-            private bool TrustKitOverrideHandler(string url, SecTrust trust)
-            {
-                Uri uri = new Uri(url);
-                TSKTrustDecision decision = (TSKTrustDecision) TrustKit.SharedInstance().PinningValidator.EvaluateTrust(trust, uri.Host);
-
-                switch (decision)
+                if (disposing)
                 {
-                    case TSKTrustDecision.ShouldAllowConnection:
-                        return true;
-                    case TSKTrustDecision.ShouldBlockConnection:
-                        return false;
-                    case TSKTrustDecision.DomainNotPinned:
-                        return true;
-                    default:
-                        return true;
+                    TrustKit.SharedInstance()?.Dispose();
                 }
+                _disposedValue = true;
             }
+        }
 
-            protected override void Dispose(bool disposing)
-            {
-                TrustOverrideForUrl-= (NSUrlSessionHandler sender, string url, SecTrust trust) => TrustKitOverrideHandler(url, trust);
-                base.Dispose(disposing);
-            }
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

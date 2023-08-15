@@ -16,7 +16,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
@@ -32,8 +32,10 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
 <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+<LangVersion>latestmajor</LangVersion>
+<AndroidLinkTool>r8</AndroidLinkTool>
+<AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +46,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -56,13 +59,13 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.7" />
     <PackageReference Include="Xamarin.AndroidX.Preference">
-      <Version>1.0.0.1</Version>
+      <Version>1.1.1.9</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">
-      <Version>1.0.0</Version>
+    <PackageReference Include="Xamarin.AndroidX.Annotation">
+      <Version>1.5.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +103,14 @@
     <Folder Include="Resources\xml\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\TrustKit.Xamarin.Android.Bindings\TrustKit.Xamarin.Android.Bindings.csproj">
+      <Project>{70CF3C36-745D-4FBE-9C6D-29906A58DE3A}</Project>
+      <Name>TrustKit.Xamarin.Android.Bindings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\TrustKit.Xamarin.Android\TrustKit.Xamarin.Android.csproj">
+      <Project>{4CAD1E0A-8A87-4987-84F7-7B009CB416E5}</Project>
+      <Name>TrustKit.Xamarin.Android</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Trustkit.Forms\TrustKit.Forms.csproj">
       <Project>{9FFA51E8-167C-47F8-AF25-EFA0DEB0B3F9}</Project>
       <Name>TrustKit.Forms</Name>
@@ -107,10 +118,6 @@
     <ProjectReference Include="..\..\src\TrustKit.Xamarin.Core\TrustKit.Xamarin.Core.csproj">
       <Project>{E7196F57-E431-459F-BAE9-DCC96D246986}</Project>
       <Name>TrustKit.Xamarin.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\TrustKit.Xamarin.Android\TrustKit.Xamarin.Android.csproj">
-      <Project>{70CF3C36-745D-4FBE-9C6D-29906A58DE3A}</Project>
-      <Name>TrustKit.Xamarin.Android</Name>
     </ProjectReference>
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

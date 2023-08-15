@@ -29,15 +29,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
 <CodesignKey>iPhone Developer</CodesignKey>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <MtouchLink>None</MtouchLink>
-    <MtouchArch>x86_64</MtouchArch>
+<LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,18 +46,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
     <AssemblyName>TrustKit.Forms.iOS</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchLink>SdkOnly</MtouchLink>
-    <AssemblyName>TrustKit.Forms.iOS</AssemblyName>
+    <LangVersion>latestmajor</LangVersion>
+    <CodesignProvision></CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -129,16 +111,20 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.7" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\TrustKit.Xamarin.Core\TrustKit.Xamarin.Core.csproj">
       <Project>{E7196F57-E431-459F-BAE9-DCC96D246986}</Project>
       <Name>TrustKit.Xamarin.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\TrustKit.Xamarin.iOS\TrustKit.Xamarin.iOS.csproj">
+    <ProjectReference Include="..\..\src\TrustKit.Xamarin.iOS.Bindings\TrustKit.Xamarin.iOS.Bindings.csproj">
       <Project>{01E609E1-2317-44DF-A535-66398442AD48}</Project>
+      <Name>TrustKit.Xamarin.iOS.Bindings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\TrustKit.Xamarin.iOS\TrustKit.Xamarin.iOS.csproj">
+      <Project>{82DE13AF-7180-42D2-92BE-91185850F94B}</Project>
       <Name>TrustKit.Xamarin.iOS</Name>
     </ProjectReference>
     <ProjectReference Include="..\Trustkit.Forms\TrustKit.Forms.csproj">

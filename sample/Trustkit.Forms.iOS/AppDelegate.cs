@@ -26,7 +26,10 @@ namespace Trustkit.Forms.iOS
             global::Xamarin.Forms.Forms.Init();
 
             DependencyService.Register<IHttpMessageHandlerFactory, HttpMessageHandlerFactory>();
-            HttpMessageHandlerFactory.Init();
+            if (DependencyService.Resolve<IHttpMessageHandlerFactory>() is HttpMessageHandlerFactory httpMessageHandlerFactory)
+            {
+                httpMessageHandlerFactory.InitSharedInstanceWithConfiguration();
+            }
 
             LoadApplication(new App());
 
