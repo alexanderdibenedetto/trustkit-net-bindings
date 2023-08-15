@@ -36,7 +36,7 @@ namespace TrustKit.Xamarin.Android
         }
 
         /// <inheritdoc />
-        public HttpMessageHandler BuildHttpMessageHandler()
+        public virtual HttpMessageHandler BuildHttpMessageHandler()
         {
             return new TrustKitAndroidClientHandler();
         }

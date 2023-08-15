@@ -47,7 +47,7 @@ namespace TrustKit.Xamarin.iOS
         }
 
         /// <inheritdoc />
-        public HttpMessageHandler BuildHttpMessageHandler()
+        public virtual HttpMessageHandler BuildHttpMessageHandler()
         {
             return new TrustKitiOSClientHandler();
         }
