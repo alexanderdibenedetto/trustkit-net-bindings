@@ -1,0 +1,49 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>TrustKit.Net</id>
+    <version>$version$</version>
+    <authors>Alexander DiBenedetto</authors>
+    <owners>Alexander DiBenedetto</owners>
+    <tags>certificatepinning trustkit bindings</tags>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/alexanderdibenedetto/trustkit-net-bindings</projectUrl>
+    <repository type="git" url="https://github.com/alexanderdibenedetto/trustkit-net-bindings"/>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Net binding libraries for DataTheorem's TrustKit Certificate Pinning implementations</description>
+    <dependencies>
+      <group targetFramework="net7.0">
+      </group>
+      <group targetFramework="net7.0-android33.0">
+        <dependency id="Net.AndroidX.Annotation" version="1.5.0.1" />
+        <dependency id="Net.AndroidX.Preference" version="1.1.1.9" />
+      </group>
+      <group targetFramework="net7.0-ios">
+      </group>
+    </dependencies>
+
+  </metadata>
+
+  <files>
+    <!-- .NET -->
+    <file src="TrustKit.Net.Core\bin\$Configuration$\net7.0\TrustKit.Net.Core.dll" target="lib\net7.0" />
+    <file src="TrustKit.Net.Core\bin\$Configuration$\net7.0\TrustKit.Net.Core.pdb" target="lib\net7.0" />
+
+    <!-- Android OS -->
+    <file src="TrustKit.Net.Android\bin\$Configuration$\net7.0-android\TrustKit.Net.Android.dll" target="lib\net7.0-android33.0" />
+    <file src="TrustKit.Net.Android\bin\$Configuration$\net7.0-android\TrustKit.Net.Android.pdb" target="lib\net7.0-android33.0" />
+    <file src="TrustKit.Net.Android\bin\$Configuration$\net7.0-android\TrustKit.Net.Android.Bindings.dll" target="lib\net7.0-android33.0" />
+    <file src="TrustKit.Net.Android\bin\$Configuration$\net7.0-android\TrustKit.Net.Android.Bindings.pdb" target="lib\net7.0-android33.0" />
+    <file src="TrustKit.Net.Core\bin\$Configuration$\net7.0\TrustKit.Net.Core.dll" target="lib\net7.0-android33.0" />
+    <file src="TrustKit.Net.Core\bin\$Configuration$\net7.0\TrustKit.Net.Core.pdb" target="lib\net7.0-android33.0" />
+
+    <!-- iOS -->
+    <file src="TrustKit.Net.iOS\bin\$Configuration$\net7.0-ios\TrustKit.Net.iOS.dll" target="lib\net7.0-ios" />
+    <file src="TrustKit.Net.iOS\bin\$Configuration$\net7.0-ios\TrustKit.Net.iOS.pdb" target="lib\net7.0-ios" />
+    <file src="TrustKit.Net.iOS\bin\$Configuration$\net7.0-ios\TrustKit.Net.iOS.Bindings.dll" target="lib\net7.0-ios" />
+    <file src="TrustKit.Net.iOS\bin\$Configuration$\net7.0-ios\TrustKit.Net.iOS.Bindings.pdb" target="lib\net7.0-ios" />
+    <file src="TrustKit.Net.Core\bin\$Configuration$\net7.0\TrustKit.Net.Core.dll" target="lib\net7.0-ios" />
+    <file src="TrustKit.Net.Core\bin\$Configuration$\net7.0\TrustKit.Net.Core.pdb" target="lib\net7.0-ios" />
+</files>
+
+</package>

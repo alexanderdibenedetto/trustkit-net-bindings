@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>TSKConfiguration</key>
+	<dict>
+		<key>TSKPinnedDomains</key>
+		<dict>
+			<key>www.google.com</key>
+			<dict>
+				<key>TSKIncludeSubdomains</key>
+				<true/>
+				<key>TSKEnforcePinning</key>
+				<true/>
+				<key>TSKPublicKeyHashes</key>
+				<array>
+					<string>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</string>
+					<string>BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=</string>
+				</array>
+			</dict>
+			<key>www.datatheorem.com</key>
+			<dict>
+				<key>TSKIncludeSubdomains</key>
+				<true/>
+				<key>TSKEnforcePinning</key>
+				<true/>
+				<key>TSKPublicKeyHashes</key>
+				<array>
+					<string>HXXQgxueCIU5TTLHob/bPbwcKOKw6DkfsTWYHbxbqTY=</string>
+					<string>0SDf3cRToyZJaMsoS17oF72VMavLxj/N7WBNasNuiR8=</string>
+				</array>
+			</dict>
+		</dict>
+		<key>TSKSwizzleNetworkDelegates</key>
+		<false/>
+	</dict>
+</dict>
+</plist>
