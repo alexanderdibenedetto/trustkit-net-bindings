@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net.Http.Headers;
+using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using DataTheorem.TrustKit.Net.Core;
 
 namespace TrustKit.Maui
 {
-	public class MainPageModel : ObservableObject
+	public class MainPageModel : ObservableObject, IDisposable
     {
         private HttpClient _httpClient;
         private string text = "Tap above to change text.";
+        private bool disposedValue;
 
         public MainPageModel()
 		{
@@ -50,7 +52,7 @@ namespace TrustKit.Maui
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                Text = $"Certificate Pinning Issue.{Environment.NewLine}{ex.Message ?? string.Empty}";
+                Text = $"Certificate Pinning Issue.{Environment.NewLine}{ex.Message ?? string.Empty}{Environment.NewLine}{ex.StackTrace}";
             }
         }
 
@@ -62,6 +64,25 @@ namespace TrustKit.Maui
                 text = value;
                 OnPropertyChanged(nameof(Text));
             }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    _httpClient?.Dispose();
+                }
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }
