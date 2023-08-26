@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using TrustKit.Net.Core;
+using DataTheorem.TrustKit.Net.Core;
 #if IOS
-using TrustKit.Net.iOS;
+using DataTheorem.TrustKit.Net.iOS;
 #elif ANDROID
-using TrustKit.Net.Android;
+using DataTheorem.TrustKit.Net.Android;
 #endif
 
 namespace TrustKit.Maui;
@@ -24,13 +24,7 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-
-#if IOS
-		builder.Services.AddSingleton<IHttpClientHandlerFactory, HttpClientHandlerFactory>();
-#elif ANDROID
-        builder.Services.AddSingleton<IHttpClientHandlerFactory, HttpClientHandlerFactory>();
-#endif
+        builder.Services.AddSingleton<IHttpMessageHandlerFactory, HttpMessageHandlerFactory>();
         return builder.Build();
 	}
 }
-

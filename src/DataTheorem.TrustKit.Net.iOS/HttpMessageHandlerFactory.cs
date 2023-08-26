@@ -1,6 +1,6 @@
-﻿using TrustKit.Net.Core;
+﻿using DataTheorem.TrustKit.Net.Core;
 
-namespace TrustKit.Net.iOS
+namespace DataTheorem.TrustKit.Net.iOS
 {
     [Preserve(AllMembers = true)]
     public class HttpMessageHandlerFactory : IHttpMessageHandlerFactory, IDisposable
@@ -33,11 +33,11 @@ namespace TrustKit.Net.iOS
                 }
                 NSDictionary<NSString, NSObject> value = new(keys.ToArray(), trustKitDictionary.Values);
 
-                TrustKit.InitSharedInstanceWithConfiguration(value);
+                iOS.Bindings.TrustKit.InitSharedInstanceWithConfiguration(value);
             }
             else
             {
-                TrustKit.InitSharedInstanceWithConfiguration(trustKitConfig);
+                iOS.Bindings.TrustKit.InitSharedInstanceWithConfiguration(trustKitConfig);
             }
             _isInitialized = true;
         }
@@ -55,7 +55,7 @@ namespace TrustKit.Net.iOS
             {
                 if (disposing)
                 {
-                    TrustKit.SharedInstance()?.Dispose();
+                    iOS.Bindings.TrustKit.SharedInstance()?.Dispose();
                 }
                 _disposedValue = true;
             }

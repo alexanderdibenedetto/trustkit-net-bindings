@@ -1,4 +1,4 @@
-﻿namespace TrustKit.Net.Core
+﻿namespace DataTheorem.TrustKit.Net.Core
 {
     public interface IHttpMessageHandlerFactory
     {

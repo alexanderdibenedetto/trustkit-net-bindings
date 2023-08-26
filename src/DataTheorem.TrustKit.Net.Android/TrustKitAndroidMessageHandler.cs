@@ -2,7 +2,7 @@
 using Javax.Net.Ssl;
 using Xamarin.Android.Net;
 
-namespace TrustKit.Net.Android
+namespace DataTheorem.TrustKit.Net.Android
 {
     /// <summary>
     ///     The TrustKit Android Client Handler.

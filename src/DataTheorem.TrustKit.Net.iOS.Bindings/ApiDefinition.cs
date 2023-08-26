@@ -3,16 +3,12 @@ using CoreFoundation;
 using Foundation;
 using ObjCRuntime;
 using Security;
-using TrustKit.Net.iOS;
 
-namespace TrustKit
+namespace DataTheorem.TrustKit.Net.iOS.Bindings
 {
     // typedef void (^TSKPinningValidatorCallback)(TSKPinningValidatorResult * _Nonnull, NSString * _Nonnull, TKSDomainPinningPolicy * _Nonnull);
     delegate void TSKPinningValidatorCallback(TSKPinningValidatorResult arg0, string arg1, NSDictionary<NSString, NSObject> arg2);
-}
 
-namespace TrustKit.Net.iOS
-{
     // @interface TSKPinningValidatorResult : NSObject
     [BaseType(typeof(NSObject))]
     interface TSKPinningValidatorResult
@@ -23,11 +19,11 @@ namespace TrustKit.Net.iOS
 
         // @property (readonly, nonatomic) TSKTrustEvaluationResult evaluationResult;
         [Export("evaluationResult")]
-        long EvaluationResult { get; }
+        TSKTrustEvaluationResult EvaluationResult { get; }
 
         // @property (readonly, nonatomic) TSKTrustDecision finalTrustDecision;
         [Export("finalTrustDecision")]
-        long FinalTrustDecision { get; }
+        TSKTrustDecision FinalTrustDecision { get; }
 
         // @property (readonly, nonatomic) NSTimeInterval validationDuration;
         [Export("validationDuration")]
@@ -48,7 +44,7 @@ namespace TrustKit.Net.iOS
 
         // -(TSKTrustDecision)evaluateTrust:(SecTrustRef _Nonnull)serverTrust forHostname:(NSString * _Nonnull)serverHostname;
         [Export("evaluateTrust:forHostname:")]
-        long EvaluateTrust(SecTrust serverTrust, string serverHostname);
+        TSKTrustDecision EvaluateTrust(SecTrust serverTrust, string serverHostname);
     }
 
     // @interface TrustKit : NSObject

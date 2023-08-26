@@ -1,8 +1,8 @@
 ﻿using Android.Content;
-using TrustKit.Net.Core;
+using DataTheorem.TrustKit.Net.Core;
 using Android.Runtime;
 
-namespace TrustKit.Net.Android
+namespace DataTheorem.TrustKit.Net.Android
 {
     /// <summary>
     ///     The Http Message Handler Factory for Android.

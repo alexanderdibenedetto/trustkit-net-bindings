@@ -1,6 +1,6 @@
 ﻿using ObjCRuntime;
 
-namespace TrustKit.Net.iOS
+namespace DataTheorem.TrustKit.Net.iOS.Bindings
 {
     [Native]
     public enum TSKTrustEvaluationResult : long

@@ -1,6 +1,6 @@
 ﻿using Android.Util;
 using System.Net.Http.Headers;
-using TrustKit.Net.Core;
+using DataTheorem.TrustKit.Net.Core;
 
 namespace TrustKit.Maui;
 
@@ -8,17 +8,17 @@ public partial class MainPage : ContentPage
 {
     HttpClient _httpClient;
 
-    public MainPage()
+    public MainPage(IServiceProvider provider)
     {
         InitializeComponent();
         BindingContext = this;
         GetContentCommand = new Command(async (x) => await GetContentCommandExecute((string)x));
-        SetupHttpClient();
+        SetupHttpClient(provider);
     }
 
-    private void SetupHttpClient()
+    private void SetupHttpClient(IServiceProvider provider)
     {
-        IHttpMessageHandlerFactory httpMessageHandlerFactory = DependencyService.Resolve<IHttpMessageHandlerFactory>();
+        IHttpMessageHandlerFactory httpMessageHandlerFactory = provider.GetService<IHttpMessageHandlerFactory>();
         _httpClient = new HttpClient(httpMessageHandlerFactory.BuildHttpMessageHandler());
         _httpClient.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
     }

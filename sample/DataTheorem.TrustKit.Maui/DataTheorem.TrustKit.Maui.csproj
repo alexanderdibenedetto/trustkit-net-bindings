@@ -21,11 +21,14 @@
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">23.0</SupportedOSPlatformVersion>
-		<ReleaseVersion>2.0.0.0</ReleaseVersion>
+		<ReleaseVersion>2.0.0</ReleaseVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	  <WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -50,15 +53,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\TrustKit.Net.Core\TrustKit.Net.Core.csproj" />
+	  <ProjectReference Include="..\..\src\DataTheorem.TrustKit.Net.Core\DataTheorem.TrustKit.Net.Core.csproj" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
-	  <ProjectReference Include="..\..\src\TrustKit.Net.Android.Bindings\TrustKit.Net.Android.Bindings.csproj" />
-	  <ProjectReference Include="..\..\src\TrustKit.Net.Android\TrustKit.Net.Android.csproj" />
+	  <ProjectReference Include="..\..\src\DataTheorem.TrustKit.Net.Android.Bindings\DataTheorem.TrustKit.Net.Android.Bindings.csproj" />
+	  <ProjectReference Include="..\..\src\DataTheorem.TrustKit.Net.Android\DataTheorem.TrustKit.Net.Android.csproj" />
     </ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
-	  <ProjectReference Include="..\..\src\TrustKit.Net.iOS.Bindings\TrustKit.Net.iOS.Bindings.csproj" />
-	  <ProjectReference Include="..\..\src\TrustKit.Net.iOS\TrustKit.Net.iOS.csproj" />
+	  <ProjectReference Include="..\..\src\DataTheorem.TrustKit.Net.iOS.Bindings\DataTheorem.TrustKit.Net.iOS.Bindings.csproj" />
+	  <ProjectReference Include="..\..\src\DataTheorem.TrustKit.Net.iOS\DataTheorem.TrustKit.Net.iOS.csproj" />
     </ItemGroup>
 	<ItemGroup>
 	  <None Remove="Platforms\Android\Resources\xml\" />
