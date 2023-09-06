@@ -1,12 +1,10 @@
-# Xamarin.iOS and Xamarin.Android bindings
-name: 1.0.0$(rev:.r)
+# Net.iOS and Net.Android bindings
+name: 2.0.0$(rev:.r)
 
 variables:
-  PathToSrcCsproj: 'src/TrustKit.Xamarin.Core/TrustKit.Xamarin.Core.csproj'
-  PathToAndroidCsproj: 'src/TrustKit.Xamarin.Android/TrustKit.Xamarin.Android.csproj'
-  PathToiOSCsProj: 'src/TrustKit.Xamarin.iOS/TrustKit.Xamarin.iOS.csproj'
-  PathToiOSSample: 'sample/Trustkit.Forms.iOS/TrustKit.Forms.iOS.csproj'
-  PathToAndroidSample: 'sample/Trustkit.Forms.Android/TrustKit.Forms.Android.csproj'
+  PathToSrcCsproj: 'src/TrustKit.Net.Core/TrustKit.Net.Core.csproj'
+  PathToAndroidCsproj: 'src/TrustKit.Net.Android/TrustKit.Net.Android.csproj'
+  PathToiOSCsProj: 'src/TrustKit.Net.iOS/TrustKit.Net.iOS.csproj'
 
 trigger:
   branches:

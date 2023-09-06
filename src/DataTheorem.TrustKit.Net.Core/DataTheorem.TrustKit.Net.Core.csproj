@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+        <AssemblyName>DataTheorem.TrustKit.Net.Core</AssemblyName>
+        <AssemblyTitle>DataTheorem.TrustKit.Net.Core</AssemblyTitle>
+        <Description>.NET MAUI interface for TrustKit</Description>
+        <Authors>Alexander DiBenedetto</Authors>
+        <PackageTags>MAUI certificatepinning TrustKit</PackageTags>
+        <ReleaseVersion>2.0.0</ReleaseVersion>
+        <AssemblyVersion>$(ReleaseVersion)</AssemblyVersion>
+        <PackageVersion>$(ReleaseVersion)</PackageVersion>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/alexanderdibenedetto/trustkit-net-bindings</PackageProjectUrl>
+</PropertyGroup>
+</Project>
