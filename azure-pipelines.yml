@@ -3,9 +3,8 @@ name: 2.0.0$(rev:.r)
 
 variables:
   CurrentSemanticVersion: '2.0.0'
-  NugetPackageVersion: '$(CurrentSemanticVersion)$(rev:.r)'
+  NugetPackageVersion: '$(CurrentSemanticVersion)''$(rev:.r)'
   TOOLKIT_NET_VERSION: '7.0.200'
-  LATEST_NET_VERSION: '7.0.x'
   DataTheoremTrustKitNetCoreCsProjPath: 'src/DataTheorem.TrustKit.Net.Core/DataTheorem.TrustKit.Net.Core.csproj'
   DataTheoremTrustKitNetAndroidCsProjPath: 'src/DataTheorem.TrustKit.Net.Android/DataTheorem.TrustKit.Net.Android.csproj'
   DataTheoremTrustKitNetAndroidBindingsCsProjPath: 'src/DataTheorem.TrustKit.Net.Android.Bindings/DataTheorem.TrustKit.Net.Android.Bindings.csproj'
