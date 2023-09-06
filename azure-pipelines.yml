@@ -2,8 +2,7 @@
 name: 2.0.0$(rev:.r)
 
 variables:
-  CurrentSemanticVersion: '2.0.0'
-  NugetPackageVersion: '$(CurrentSemanticVersion)''$(rev:.r)'
+  NugetPackageVersion: name
   TOOLKIT_NET_VERSION: '7.0.200'
   DataTheoremTrustKitNetCoreCsProjPath: 'src/DataTheorem.TrustKit.Net.Core/DataTheorem.TrustKit.Net.Core.csproj'
   DataTheoremTrustKitNetAndroidCsProjPath: 'src/DataTheorem.TrustKit.Net.Android/DataTheorem.TrustKit.Net.Android.csproj'
