@@ -2,7 +2,7 @@
 name: 2.0.0$(rev:.r)
 
 variables:
-  CurrentSemanticVersionBase: '2.0.0'
+  CurrentSemanticVersion: '2.0.0'
   NugetPackageVersion: '$(CurrentSemanticVersion)$(rev:.r)'
   TOOLKIT_NET_VERSION: '7.0.200'
   LATEST_NET_VERSION: '7.0.x'
@@ -105,7 +105,6 @@ steps:
 
   # Copy all NuGet packages
   - task: PowerShell@2
-    condition: and(eq(variables['Agent.OS'], 'Windows_NT'), not(startsWith(variables['Build.SourceBranch'], 'refs/tags/'))) # Only run this step on Windows and when it's not a tagged build
     displayName: 'Copy NuGet Packages to Staging Directory'
     inputs:
       targetType: 'inline'
