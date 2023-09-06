@@ -1,13 +1,6 @@
 # .NET iOS and .NET Android bindings
 name: 2.0.0$(rev:.r)
 
-variables:
-  PathToCoreProject: 'src/DataTheorem.TrustKit.Net.Core/DataTheorem.TrustKit.Net.Core.csproj'
-  PathToAndroidProject: 'src/DataTheorem.TrustKit.Net.Android/DataTheorem.TrustKit.Net.Android.csproj'
-  PathToAndroidBindingsProject: 'src/DataTheorem.TrustKit.Net.Android.Bindings/DataTheorem.TrustKit.Net.Android.Bindings.csproj'
-  PathToiOSProject: 'src/DataTheorem.TrustKit.Net.iOS/DataTheorem.TrustKit.Net.iOS.csproj'
-  PathToiOSBindingsProject: 'src/DataTheorem.TrustKit.Net.iOS.Bindings/DataTheorem.TrustKit.Net.iOS.Bindings.csproj'
-
 trigger:
   branches:
     include:
@@ -40,49 +33,16 @@ steps:
 
 - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: 'PathToCoreProject'
+    packagesToPack: 'src/**/*.csproj'
+    configuration: 'Release'
     versioningScheme: 'byBuildNumber'
-    configuration: Release
-    packDestination: '$(Build.ArtifactStagingDirectory)'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: 'PathToAndroidProject'
-    versioningScheme: 'byBuildNumber'
-    configuration: Release
-    packDestination: '$(Build.ArtifactStagingDirectory)'
-    
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: 'PathToAndroidBindingsProject'
-    versioningScheme: 'byBuildNumber'
-    configuration: Release
-    packDestination: '$(Build.ArtifactStagingDirectory)'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: 'PathToiOSProject'
-    versioningScheme: 'byBuildNumber'
-    configuration: Release
-    packDestination: '$(Build.ArtifactStagingDirectory)'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: 'PathToiOSBindingsProject'
-    versioningScheme: 'byBuildNumber'
-    configuration: Release
-    packDestination: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg;!$(Build.ArtifactStagingDirectory)/*.symbols.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: '3d84ee8c-75d6-468d-83a1-d08e5e070e1d'
