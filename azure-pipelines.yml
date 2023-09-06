@@ -1,10 +1,14 @@
-# Net.iOS and Net.Android bindings
+# .NET iOS and .NET Android bindings
 name: 2.0.0$(rev:.r)
 
 variables:
-  PathToSrcCsproj: 'src/TrustKit.Net.Core/TrustKit.Net.Core.csproj'
-  PathToAndroidCsproj: 'src/TrustKit.Net.Android/TrustKit.Net.Android.csproj'
-  PathToiOSCsProj: 'src/TrustKit.Net.iOS/TrustKit.Net.iOS.csproj'
+  NugetPackageVersion: '$(Build.BuildNumber)'
+  TOOLKIT_NET_VERSION: '7.0.200'
+  DataTheoremTrustKitNetCoreCsProjPath: 'src/DataTheorem.TrustKit.Net.Core/DataTheorem.TrustKit.Net.Core.csproj'
+  DataTheoremTrustKitNetAndroidCsProjPath: 'src/DataTheorem.TrustKit.Net.Android/DataTheorem.TrustKit.Net.Android.csproj'
+  DataTheoremTrustKitNetAndroidBindingsCsProjPath: 'src/DataTheorem.TrustKit.Net.Android.Bindings/DataTheorem.TrustKit.Net.Android.Bindings.csproj'
+  DataTheoremTrustKitNetiOSCsProjPath: 'src/DataTheorem.TrustKit.Net.iOS/DataTheorem.TrustKit.Net.iOS.csproj'
+  DataTheoremTrustKitNetiOSBindingsCsProjPath: 'src/DataTheorem.TrustKit.Net.iOS.Bindings/DataTheorem.TrustKit.Net.iOS.Bindings.csproj'
 
 trigger:
   branches:
@@ -32,50 +36,85 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-# To manually select a Xamarin SDK version on the Microsoft-hosted macOS agent,
-# configure this task with the *Mono* version that is associated with the
-# Xamarin SDK version that you need, and set the "enabled" property to true.
-# See https://go.microsoft.com/fwlink/?linkid=871629
-- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 5_12_0
-  displayName: 'Select the Xamarin SDK version'
-  enabled: false
+  - checkout: self
+    lfs: true
+  
+  - task: UseDotNet@2
+    displayName: Install .NET v$(TOOLKIT_NET_VERSION)
+    inputs:
+      packageType: 'sdk'
+      version: '$(TOOLKIT_NET_VERSION)'
 
-- checkout: self
-  lfs: true
+  - task: CmdLine@2
+    displayName: 'Install .NET MAUI Workload $(TOOLKIT_NET_VERSION)'
+    inputs:
+      script: dotnet workload install maui
 
-- task: NuGetToolInstaller@1
+  - task: NuGetToolInstaller@1
 
-- task: MSBuild@1
-  displayName: Build TrustKit.Xamarin.Core
-  inputs:
-    solution: $(PathToSrcCsproj)
-    configuration: Release
-    msbuildArguments: '/restore /t:Build'
+  - task: CmdLine@2
+    displayName: 'Build DataTheorem.TrustKit.Net.Core'
+    inputs:
+      script: 'dotnet build -c Release $(DataTheoremTrustKitNetCoreCsProjPath)'
+  - task: CmdLine@2
+    displayName: 'Build DataTheorem.TrustKit.Net.Android'
+    inputs:
+      script: 'dotnet build -c Release $(DataTheoremTrustKitNetAndroidCsProjPath)'
 
-- task: MSBuild@1
-  displayName: Build TrustKit.Xamarin.Android
-  inputs:
-    solution: $(PathToAndroidCsproj)
-    configuration: Release
-    msbuildArguments: '/restore /t:Build'    
+  - task: CmdLine@2
+    displayName: 'Build DataTheorem.TrustKit.Net.Android.Bindings'
+    inputs:
+      script: 'dotnet build -c Release $(DataTheoremTrustKitNetAndroidBindingsCsProjPath)'
 
-- task: MSBuild@1
-  displayName: Build TrustKit.Xamarin.iOS
-  inputs:
-    solution: $(PathToiOSCsProj)
-    configuration: Release
-    msbuildArguments: '/restore /t:Build'    
+  - task: CmdLine@2
+    displayName: 'Build DataTheorem.TrustKit.Net.iOS'
+    inputs:
+      script: 'dotnet build -c Release $(DataTheoremTrustKitNetiOSCsProjPath)'
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.nuspec'
-    versioningScheme: 'byBuildNumber'
-    configuration: Release
+  - task: CmdLine@2
+    displayName: 'Build DataTheorem.TrustKit.Net.iOS.Bindings'
+    inputs:
+      script: 'dotnet build -c Release $(DataTheoremTrustKitNetiOSBindingsCsProjPath)'
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: '3d84ee8c-75d6-468d-83a1-d08e5e070e1d'
+  - task: CmdLine@2
+    displayName: 'Pack DataTheorem.TrustKit.Net.Core'
+    inputs:
+      script: 'dotnet pack $(DataTheoremTrustKitNetCoreCsProjPath) -c Release -p:PackageVersion=$(NugetPackageVersion)'
+
+  - task: CmdLine@2
+    displayName: 'Pack DataTheorem.TrustKit.Net.Android'
+    inputs:
+      script: 'dotnet pack $(DataTheoremTrustKitNetAndroidCsProjPath) -c Release -p:PackageVersion=$(NugetPackageVersion)'
+
+  - task: CmdLine@2
+    displayName: 'Pack DataTheorem.TrustKit.Net.Android.Bindings'
+    inputs:
+      script: 'dotnet pack $(DataTheoremTrustKitNetAndroidBindingsCsProjPath) -c Release -p:PackageVersion=$(NugetPackageVersion)'
+
+  - task: CmdLine@2
+    displayName: 'Pack DataTheorem.TrustKit.Net.iOS'
+    inputs:
+      script: 'dotnet pack $(DataTheoremTrustKitNetiOSCsProjPath) -c Release -p:PackageVersion=$(NugetPackageVersion)'
+
+  - task: CmdLine@2
+    displayName: 'Pack DataTheorem.TrustKit.Net.iOS.Bindings'
+    inputs:
+      script: 'dotnet pack $(DataTheoremTrustKitNetiOSBindingsCsProjPath) -c Release -p:PackageVersion=$(NugetPackageVersion)'
+
+  # Copy all NuGet packages
+  - task: PowerShell@2
+    displayName: 'Copy NuGet Packages to Staging Directory'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $source = ".\src"
+        $filter = "nupkg"
+        Get-ChildItem -Path $source -Recurse | Where-Object { $_.Extension -match $filter } | Copy-Item -Destination "$(Build.ArtifactStagingDirectory)"
+      pwsh: true
+
+  - task: NuGetCommand@2
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg;!$(Build.ArtifactStagingDirectory)/*.symbols.nupkg'
+      nuGetFeedType: 'internal'
+      publishVstsFeed: '3d84ee8c-75d6-468d-83a1-d08e5e070e1d'
