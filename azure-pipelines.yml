@@ -46,6 +46,7 @@ steps:
     packagesToPack: 'PathToCoreProject'
     versioningScheme: 'byBuildNumber'
     configuration: Release
+    packDestination: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
   inputs:
@@ -53,6 +54,7 @@ steps:
     packagesToPack: 'PathToAndroidProject'
     versioningScheme: 'byBuildNumber'
     configuration: Release
+    packDestination: '$(Build.ArtifactStagingDirectory)'
     
 - task: NuGetCommand@2
   inputs:
@@ -60,6 +62,7 @@ steps:
     packagesToPack: 'PathToAndroidBindingsProject'
     versioningScheme: 'byBuildNumber'
     configuration: Release
+    packDestination: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
   inputs:
@@ -67,6 +70,7 @@ steps:
     packagesToPack: 'PathToiOSProject'
     versioningScheme: 'byBuildNumber'
     configuration: Release
+    packDestination: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
   inputs:
@@ -74,6 +78,7 @@ steps:
     packagesToPack: 'PathToiOSBindingsProject'
     versioningScheme: 'byBuildNumber'
     configuration: Release
+    packDestination: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
   inputs:
