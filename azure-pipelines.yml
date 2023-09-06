@@ -1,10 +1,12 @@
-# Net.iOS and Net.Android bindings
+# .NET iOS and .NET Android bindings
 name: 2.0.0$(rev:.r)
 
 variables:
-  PathToSrcCsproj: 'src/TrustKit.Net.Core/TrustKit.Net.Core.csproj'
-  PathToAndroidCsproj: 'src/TrustKit.Net.Android/TrustKit.Net.Android.csproj'
-  PathToiOSCsProj: 'src/TrustKit.Net.iOS/TrustKit.Net.iOS.csproj'
+  PathToCoreProject: 'src/DataTheorem.TrustKit.Net.Core/DataTheorem.TrustKit.Net.Core.csproj'
+  PathToAndroidProject: 'src/DataTheorem.TrustKit.Net.Android/DataTheorem.TrustKit.Net.Android.csproj'
+  PathToAndroidBindingsProject: 'src/DataTheorem.TrustKit.Net.Android.Bindings/DataTheorem.TrustKit.Net.Android.Bindings.csproj'
+  PathToiOSProject: 'src/DataTheorem.TrustKit.Net.iOS/DataTheorem.TrustKit.Net.iOS.csproj'
+  PathToiOSBindingsProject: 'src/DataTheorem.TrustKit.Net.iOS.Bindings/DataTheorem.TrustKit.Net.iOS.Bindings.csproj'
 
 trigger:
   branches:
@@ -32,44 +34,44 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-# To manually select a Xamarin SDK version on the Microsoft-hosted macOS agent,
-# configure this task with the *Mono* version that is associated with the
-# Xamarin SDK version that you need, and set the "enabled" property to true.
-# See https://go.microsoft.com/fwlink/?linkid=871629
-- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 5_12_0
-  displayName: 'Select the Xamarin SDK version'
-  enabled: false
 
 - checkout: self
   lfs: true
 
 - task: NuGetToolInstaller@1
 
-- task: MSBuild@1
-  displayName: Build TrustKit.Xamarin.Core
+- task: NuGetCommand@2
   inputs:
-    solution: $(PathToSrcCsproj)
+    command: 'pack'
+    packagesToPack: 'PathToCoreProject'
+    versioningScheme: 'byBuildNumber'
     configuration: Release
-    msbuildArguments: '/restore /t:Build'
-
-- task: MSBuild@1
-  displayName: Build TrustKit.Xamarin.Android
-  inputs:
-    solution: $(PathToAndroidCsproj)
-    configuration: Release
-    msbuildArguments: '/restore /t:Build'    
-
-- task: MSBuild@1
-  displayName: Build TrustKit.Xamarin.iOS
-  inputs:
-    solution: $(PathToiOSCsProj)
-    configuration: Release
-    msbuildArguments: '/restore /t:Build'    
 
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.nuspec'
+    packagesToPack: 'PathToAndroidProject'
+    versioningScheme: 'byBuildNumber'
+    configuration: Release
+    
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'PathToAndroidBindingsProject'
+    versioningScheme: 'byBuildNumber'
+    configuration: Release
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'PathToiOSProject'
+    versioningScheme: 'byBuildNumber'
+    configuration: Release
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'PathToiOSBindingsProject'
     versioningScheme: 'byBuildNumber'
     configuration: Release
 
