@@ -13,7 +13,7 @@ namespace DataTheorem.TrustKit.Net.Android
         /// <summary>
         ///     Initializes a new instance of <see cref="TrustKitAndroidMessageHandler"/>.
         /// </summary>
-        public TrustKitAndroidMessageHandler() { }
+        public TrustKitAndroidMessageHandler() : base() { }
 
         /// <inheritdoc />
         protected override SSLSocketFactory ConfigureCustomSSLSocketFactory(HttpsURLConnection connection)
