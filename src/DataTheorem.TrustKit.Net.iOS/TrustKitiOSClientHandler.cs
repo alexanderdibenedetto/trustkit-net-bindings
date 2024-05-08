@@ -7,7 +7,12 @@ namespace DataTheorem.TrustKit.Net.iOS
     {
         private bool _disposedValue;
 
-        public TrustKitiOSClientHandler()
+        public TrustKitiOSClientHandler() : base()
+        {
+            TrustOverrideForUrl += (NSUrlSessionHandler sender, string url, SecTrust trust) => TrustKitOverrideHandler(url, trust);
+        }
+
+        public TrustKitiOSClientHandler(NSUrlSessionConfiguration configuration) : base(configuration)
         {
             TrustOverrideForUrl += (NSUrlSessionHandler sender, string url, SecTrust trust) => TrustKitOverrideHandler(url, trust);
         }
