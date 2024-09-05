@@ -10,6 +10,14 @@ https://github.com/datatheorem/TrustKit
 https://github.com/datatheorem/TrustKit-Android
 
 # Usage
+
+## Install
+
+**iOS** | https://www.nuget.org/packages/DataTheorem.TrustKit.Net.iOS
+
+**Android** | https://www.nuget.org/packages/DataTheorem.TrustKit.Net.Android
+
+## Implement
 The basic interface for this library is to override the HttpMessageHandler on a System.Net.Http.HttpClient constructor with a TrustKit enhanced version. Use any dependency service you want, the following example uses the built in MAUI dependency service. This builds the platform specific http message handler for any http clients needed in the shared code library.
 
 ```
@@ -28,7 +36,7 @@ openssl x509 -in {certificateName}.cer -pubkey -noout
 | openssl enc -base64
 ```
 
-## iOS
+### iOS
 For iOS, configure by placing the TrustKit configuration in the info.plist as described by the original TrustKit library. It will not use swizzling in this implementation, even if swizzling is turned on in the info.plist. Only the HttpClients with the TrustKit HttpMessageHandler parameter will use the certificate pinning implementation.
 
 In the AppDelegate's FinishedLaunching method, be sure to put:
@@ -37,10 +45,10 @@ httpMessageHandlerFactory.InitSharedInstanceWithConfiguration();
 ```
 This initializes the TrustKit iOS code.
 
-## Android
-For Android, configure by placing the TrustKit configure in the normal Android security configuration file (resources/xml/network_security_config.xml) and be sure to follow the remaining documentation as described by the original TrustKit library.
+### Android
+For Android, configure by placing the TrustKit configuration in the normal Android security configuration file (resources/xml/network_security_config.xml) and be sure to follow the remaining documentation as described by the original TrustKit library.
 
-In the MainActivity's OnCreate function, be sure to put:
+In the MainActivity's OnCreate function, put:
 ```
 httpMessageHandlerFactory.InitializeWithNetworkSecurityConfiguration(this);
 ```
