@@ -47,7 +47,7 @@ steps:
       includePreviewVersions: false
 
   - task: CmdLine@2
-    displayName: 'Install .NET MAUI Workload $(TOOLKIT_NET_VERSION)'
+    displayName: 'Install Latest .NET MAUI Workload'
     inputs:
       script: dotnet workload install maui
 
