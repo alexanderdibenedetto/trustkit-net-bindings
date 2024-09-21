@@ -3,7 +3,7 @@ name: 2.0.0$(rev:.r)
 
 variables:
   NugetPackageVersion: '$(Build.BuildNumber)'
-  TOOLKIT_NET_VERSION: '7.0.200'
+  LATEST_NET_VERSION: '8.0.x'
   DataTheoremTrustKitNetCoreCsProjPath: 'src/DataTheorem.TrustKit.Net.Core/DataTheorem.TrustKit.Net.Core.csproj'
   DataTheoremTrustKitNetAndroidCsProjPath: 'src/DataTheorem.TrustKit.Net.Android/DataTheorem.TrustKit.Net.Android.csproj'
   DataTheoremTrustKitNetAndroidBindingsCsProjPath: 'src/DataTheorem.TrustKit.Net.Android.Bindings/DataTheorem.TrustKit.Net.Android.Bindings.csproj'
@@ -33,17 +33,18 @@ pr:
     - README.md
 
 pool:
-  vmImage: 'macos-latest'
+  vmImage: 'macos-14'
 
 steps:
   - checkout: self
     lfs: true
   
   - task: UseDotNet@2
-    displayName: Install .NET v$(TOOLKIT_NET_VERSION)
+    displayName: 'Install Latest .NET SDK, v$(LATEST_NET_VERSION)'
     inputs:
       packageType: 'sdk'
-      version: '$(TOOLKIT_NET_VERSION)'
+      version: '$(LATEST_NET_VERSION)'
+      includePreviewVersions: false
 
   - task: CmdLine@2
     displayName: 'Install .NET MAUI Workload $(TOOLKIT_NET_VERSION)'
