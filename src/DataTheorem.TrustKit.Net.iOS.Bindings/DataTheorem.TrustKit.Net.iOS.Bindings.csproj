@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0-ios</TargetFramework>
+    <TargetFramework>net8.0-ios</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
     <IsBindingProject>true</IsBindingProject>
@@ -23,7 +23,7 @@
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="..\..\frameworks\TrustKit.framework">
+    <NativeReference Include="..\..\frameworks\TrustKit.xcframework">
       <Kind>Framework</Kind>
       <ForceLoad>True</ForceLoad>
       <SmartLink>False</SmartLink>

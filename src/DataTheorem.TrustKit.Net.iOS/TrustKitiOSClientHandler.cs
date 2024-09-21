@@ -19,16 +19,37 @@ namespace DataTheorem.TrustKit.Net.iOS
 
         private bool TrustKitOverrideHandler(string url, SecTrust trust)
         {
-            Uri uri = new(url);
-            iOS.Bindings.TSKTrustDecision decision = iOS.Bindings.TrustKit.SharedInstance().PinningValidator.EvaluateTrust(trust, uri.Host);
-
-            return decision switch
+            try
             {
-                iOS.Bindings.TSKTrustDecision.ShouldAllowConnection => true,
-                iOS.Bindings.TSKTrustDecision.ShouldBlockConnection => false,
-                iOS.Bindings.TSKTrustDecision.DomainNotPinned => true,
-                _ => true,
-            };
+                // return true for loading if url is null or empty.
+                if (string.IsNullOrEmpty(url))
+                {
+                    return true;
+                }
+
+                // return true for loading if trustkit instance is null or empty.
+                if(iOS.Bindings.TrustKit.SharedInstance() == null)
+                {
+                    return true;
+                }
+
+                Uri uri = new(url);
+                iOS.Bindings.TSKTrustDecision decision = iOS.Bindings.TrustKit.SharedInstance().PinningValidator?.EvaluateTrust(trust, uri.Host)
+                    ?? iOS.Bindings.TSKTrustDecision.ShouldBlockConnection;
+
+                return decision switch
+                {
+                    iOS.Bindings.TSKTrustDecision.ShouldAllowConnection => true,
+                    iOS.Bindings.TSKTrustDecision.ShouldBlockConnection => false,
+                    iOS.Bindings.TSKTrustDecision.DomainNotPinned => true,
+                    _ => true,
+                };
+            }
+            catch(Exception)
+            {
+                // For security reasons return false for any exception caught.
+                return false;
+            }
         }
 
         protected override void Dispose(bool disposing)
