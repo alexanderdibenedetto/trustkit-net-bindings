@@ -5,13 +5,14 @@
              x:Class="TrustKit.Maui.MainPage"
              x:DataType="maui:MainPageModel"
              BindingContext="{maui:MainPageModel}">
-    <StackLayout Spacing="12" Margin="12">
-        <Button Text="Test ShouldAllowConnection" Command="{Binding GetContentCommand}" CommandParameter="0" />
-        <Button Text="Test ShouldBlockConnection" Command="{Binding GetContentCommand}" CommandParameter="1" />
-        <Button Text="Test DomainNotPinned" Command="{Binding GetContentCommand}" CommandParameter="2" />
-        <ScrollView>
-            <Label Text="{Binding Text}" VerticalOptions="FillAndExpand" LineBreakMode="WordWrap" TextType="Html" />
+    <Grid RowDefinitions="Auto,*">
+        <VerticalStackLayout Spacing="12" Grid.Row="0" Margin="12">
+            <Button Text="Test ShouldAllowConnection" Command="{Binding GetContentCommand}" CommandParameter="0" />
+            <Button Text="Test ShouldBlockConnection" Command="{Binding GetContentCommand}" CommandParameter="1" />
+            <Button Text="Test DomainNotPinned" Command="{Binding GetContentCommand}" CommandParameter="2" />
+        </VerticalStackLayout>
+        <ScrollView Grid.Row="1" Margin="12" >
+            <Label Text="{Binding Text}" TextType="Text" />
         </ScrollView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
-

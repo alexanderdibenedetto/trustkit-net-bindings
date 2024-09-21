@@ -1,7 +1,5 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Net.Http.Headers;
-using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using DataTheorem.TrustKit.Net.Core;
 
@@ -35,17 +33,20 @@ namespace TrustKit.Maui
                 {
                     // ShouldAllowConnection
                     case "0":
-                        Text = await _httpClient.GetStringAsync(@"https://datatheorem.com");
+                        string allowedText = await _httpClient.GetStringAsync(@"https://www.datatheorem.com");
+                        Text = $"Domain pinned and connection allowed. Characters of text loaded: {allowedText.Length}";
                         break;
 
                     // ShouldBlockConnection
                     case "1":
-                        Text = await _httpClient.GetStringAsync(@"https://www.google.com");
+                        string blockedText = await _httpClient.GetStringAsync(@"https://www.google.com");
+                        Text = $"Domain should be blocked. You should not see this if properly configured. Characters of text loaded: {blockedText.Length}";
                         break;
 
                     // DomainNotPinned
                     case "2":
-                        Text = await _httpClient.GetStringAsync(@"https://www.microsoft.com");
+                        string notPinnedText = await _httpClient.GetStringAsync(@"https://www.microsoft.com/en-us/");
+                        Text = $"Domain not pinned and successfully loaded.  Characters of text loaded: {notPinnedText.Length}";
                         break;
                 }
             }
